@@ -1,19 +1,44 @@
-import { createElement, Fragment, createComponent, propTypes } from 'axii'
+import {
+  createElement,
+  Fragment,
+  createComponent,
+  propTypes,
+  useViewEffect,
+  atom,
+} from "axii";
+import Item from "./Item";
 
-App.propTypes = {
-  
-}
+const fetchList = () =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve([
+        { id: "1", name: "1" },
+        { id: "2", name: "2" },
+        { id: "3", name: "3" },
+      ]);
+    }, 1000);
+  });
 
-function App () {
+App.propTypes = {};
+
+function App() {
+  const list = atom([]);
+  useViewEffect(() => {
+    getList();
+  });
+  const getList = async () => {
+    list.value = await fetchList();
+  };
+
   return (
     <div>
-      This is axii-reproduce
+      {() =>
+        list.value.map((item) => <Item key={item.id} itemValue={item}></Item>)
+      }
     </div>
-  )
+  );
 }
 
-App.Style = (fragments) => {
+App.Style = (fragments) => {};
 
-}
-
-export default createComponent(App)
+export default createElement(createComponent(App));
