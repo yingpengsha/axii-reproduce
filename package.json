@@ -1,0 +1,11 @@
+{
+  "name": "axii-reproduce",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "axii": "^1.5.5",
+    "esbuild": "^0.14.26",
+    "vite": "2.7.13"
+  }
+}
