@@ -32,6 +32,7 @@ function App() {
 
   return (
     <div>
+      <p>复现方法：反复展开或收起节点</p>
       {() =>
         list.value.map((item) => <Item key={item.id} itemValue={item}></Item>)
       }
